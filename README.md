@@ -32,6 +32,11 @@ O comando utilizado para iniciar a força bruta modular foi:
 ```bash
 medusa -h 192.168.1.97 -u users.txt -P pass.txt -M ftp
 ```
+
+
+<img width="1584" height="386" alt="Captura de tela de 2026-05-15 17-40-38" src="https://github.com/user-attachments/assets/1691d092-f9d0-45e2-83de-142cbe38e098" />
+
+
 Resultados da Operação
 A engine identificou a credencial vulnerável em poucos segundos de execução:
 
@@ -44,6 +49,9 @@ PASS: vagrant,
 STATUS: [SUCCESS]
 
 ---
+
+<img width="1129" height="319" alt="Captura de tela de 2026-05-15 17-42-53" src="https://github.com/user-attachments/assets/5706beb6-7c27-4e6b-949f-03d90ad10d1f" />
+
 
 ## 🛑 Protocolos de Hardening (Medidas de Defesa)
 > "A melhor defesa é uma arquitetura que não oferece confiança a ninguém."
