@@ -70,6 +70,16 @@ Para mitigar a eficácia de ataques como a **Operation-BruteForce**, as seguinte
 * **Port Knocking:** Configurar o firewall para manter a porta 21 oculta, abrindo-a apenas após uma "batida" específica em outras portas pré-definidas.
 * **Monitoramento de Logs:** Centralizar logs em um servidor externo para identificar padrões de varredura (Reconnaissance) antes mesmo do ataque começar.
 
+
+
+### IMPLEMENTAÇÃO RÁPIDA DE DEFESA.
+
+```bash
+sudo apt update && sudo apt install fail2ban -y
+
+sudo systemctl enable fail2ban
+sudo systemctl start fail2ban
+```
 ---
 **Status da Operação:** Concluída com sucesso.  
 **Recomendação:** Aplicar Hardening imediato no ambiente Metasploitable 3.
